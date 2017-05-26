@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import pokemons from "./pokemons_data";
+import pokemons from "./pokemons";
+import loading from "./loading";
 
 const rootReducer = combineReducers({
-    pokemons
+    pokemons,
+    loading
 });
 
 export default rootReducer;

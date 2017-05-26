@@ -9,6 +9,7 @@ class SearchBar extends Component {
   handleFilterPokemons(e) {      
       this.props.onFilterPokemons(e.target.value);
   } 
+  
   render() {   
     return (
       <div className="well search-bar" >

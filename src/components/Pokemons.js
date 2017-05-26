@@ -8,31 +8,26 @@ import Loading from "./Loading";
 class Pokemons extends Component {
     constructor() {
         super();
-        this.state = {
-            pokemons: [],                      
-            filterText: "",
-            loading: true
+        this.state = {                                  
+            filterText: ""            
         }
        
         this.handleFilterPokemons = this.handleFilterPokemons.bind(this);
     }
-    componentWillReceiveProps(nextProps) {                     
-        this.setState({
-            pokemons: nextProps.data.pokemons,
-            loading: nextProps.data.loading
-        })       
-    }    
-    
+
     handleFilterPokemons(filterText) {
         this.setState({
             filterText: filterText
         })
     }
+
     render() {              
-        let { filterText, pokemons, loading } = this.state;                                     
+        let { filterText } = this.state;       
+        
+        let { loading, data: { pokemons } } = this.props;                                            
         
         if(filterText){
-        pokemons = pokemons.filter(pokemon =>
+            pokemons = pokemons.filter(pokemon =>
             pokemon.name.toLowerCase()
             .includes(filterText.toLowerCase()))
         }       
@@ -40,7 +35,7 @@ class Pokemons extends Component {
         return (
             <div>
                 <SearchBar onFilterPokemons={this.handleFilterPokemons} />
-                <PokemonsTable pokemons={pokemons} />
+                {!loading && <PokemonsTable pokemons={pokemons} />}
                 {loading && <Loading />}                
             </div>
         );
@@ -49,7 +44,8 @@ class Pokemons extends Component {
 
 export default connect(
     state => ({
-        data: state.pokemons
+        data: state.pokemons,
+        loading: state.loading
     })
 )(Pokemons);
 

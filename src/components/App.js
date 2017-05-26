@@ -9,7 +9,8 @@ class App extends Component {
     componentWillMount() {       
            this.props.fetchPokemons();
            this.props.fetchTypes();          
-    }        
+    }
+            
     render() {             
         return(
             <div>                                

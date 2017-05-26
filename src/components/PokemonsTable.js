@@ -6,6 +6,7 @@ class PokemonsTable extends Component {
 
         this.renderData = this.renderData.bind(this);
     }
+
     renderData(pokemon, i) {
         let { avatar, height, weight, name} = pokemon;        
                                
@@ -18,6 +19,7 @@ class PokemonsTable extends Component {
             </tr>          
         );
     }
+    
     render() {
         let { pokemons } = this.props;
 

@@ -33,104 +33,125 @@ body {
 }
 
 /*--------------------Loading---------------------*/
-#loading {
-    background: white repeat scroll 0 0;
+#loader {
+    bottom: 0;
+    height: 175px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 175px;
+}
+#loader {
+    bottom: 0;
+    height: 175px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 175px;
+}
+#loader .dot {
+    bottom: 0;
     height: 100%;
     left: 0;
     margin: auto;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-.bokeh {
-    border: 0.01em solid rgba(150, 150, 150, 0.1);
-    border-radius: 50%;
-    font-size: 100px;
-    height: 1em;
-    list-style: outside none none;
-    margin: 0 auto;
-    position: relative;
-    top: 35%;
-    width: 1em;
-    z-index: 2147483647;
-}
-.bokeh li {
-    border-radius: 50%;
-    height: 0.2em;
     position: absolute;
-    width: 0.2em;
-}
-.bokeh li:nth-child(1) {
-    animation: 1.13s linear 0s normal none infinite running rota, 3.67s ease-in-out 0s alternate none infinite running opa;
-    background: #00c176 none repeat scroll 0 0;
-    left: 50%;
-    margin: 0 0 0 -0.1em;
-    top: 0;
-    transform-origin: 50% 250% 0;
-}
-.bokeh li:nth-child(2) {
-    animation: 1.86s linear 0s normal none infinite running rota, 4.29s ease-in-out 0s alternate none infinite running opa;
-    background: #ff003c none repeat scroll 0 0;
-    margin: -0.1em 0 0;
     right: 0;
-    top: 50%;
-    transform-origin: -150% 50% 0;
+    top: 0;
+    width: 87.5px;
 }
-.bokeh li:nth-child(3) {
-    animation: 1.45s linear 0s normal none infinite running rota, 5.12s ease-in-out 0s alternate none infinite running opa;
-    background: #fabe28 none repeat scroll 0 0;
-    bottom: 0;
-    left: 50%;
-    margin: 0 0 0 -0.1em;
-    transform-origin: 50% -150% 0;
+#loader .dot::before {
+    border-radius: 100%;
+    content: "";
+    height: 87.5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(0);
+    width: 87.5px;
 }
-.bokeh li:nth-child(4) {
-    animation: 1.72s linear 0s normal none infinite running rota, 5.25s ease-in-out 0s alternate none infinite running opa;
-    background: #88c100 none repeat scroll 0 0;
-    margin: -0.1em 0 0;
-    top: 50%;
-    transform-origin: 250% 50% 0;
+#loader .dot:nth-child(7n+1) {
+    transform: rotate(45deg);
 }
-@keyframes opa {
-12% {
-    opacity: 0.8;
+#loader .dot:nth-child(7n+1)::before {
+    animation: 0.8s linear 0.1s normal none infinite running load;
+    background: #00ff80 none repeat scroll 0 0;
 }
-19.5% {
-    opacity: 0.88;
+#loader .dot:nth-child(7n+2) {
+    transform: rotate(90deg);
 }
-37.2% {
-    opacity: 0.64;
+#loader .dot:nth-child(7n+2)::before {
+    animation: 0.8s linear 0.2s normal none infinite running load;
+    background: #00ffea none repeat scroll 0 0;
 }
-40.5% {
-    opacity: 0.52;
+#loader .dot:nth-child(7n+3) {
+    transform: rotate(135deg);
 }
-52.7% {
-    opacity: 0.69;
+#loader .dot:nth-child(7n+3)::before {
+    animation: 0.8s linear 0.3s normal none infinite running load;
+    background: #00aaff none repeat scroll 0 0;
 }
-60.2% {
-    opacity: 0.6;
+#loader .dot:nth-child(7n+4) {
+    transform: rotate(180deg);
 }
-66.6% {
-    opacity: 0.52;
+#loader .dot:nth-child(7n+4)::before {
+    animation: 0.8s linear 0.4s normal none infinite running load;
+    background: #0040ff none repeat scroll 0 0;
 }
-70% {
-    opacity: 0.63;
+#loader .dot:nth-child(7n+5) {
+    transform: rotate(225deg);
 }
-79.9% {
-    opacity: 0.6;
+#loader .dot:nth-child(7n+5)::before {
+    animation: 0.8s linear 0.5s normal none infinite running load;
+    background: #2a00ff none repeat scroll 0 0;
 }
-84.2% {
-    opacity: 0.75;
+#loader .dot:nth-child(7n+6) {
+    transform: rotate(270deg);
 }
-91% {
-    opacity: 0.87;
+#loader .dot:nth-child(7n+6)::before {
+    animation: 0.8s linear 0.6s normal none infinite running load;
+    background: #9500ff none repeat scroll 0 0;
+}
+#loader .dot:nth-child(7n+7) {
+    transform: rotate(315deg);
+}
+#loader .dot:nth-child(7n+7)::before {
+    animation: 0.8s linear 0.7s normal none infinite running load;
+    background: magenta none repeat scroll 0 0;
+}
+#loader .dot:nth-child(7n+8) {
+    transform: rotate(360deg);
+}
+#loader .dot:nth-child(7n+8)::before {
+    animation: 0.8s linear 0.8s normal none infinite running load;
+    background: #ff0095 none repeat scroll 0 0;
+}
+#loader .lading {    
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    bottom: -40px;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 180px;
+}
+@keyframes load {
+100% {
+    opacity: 0;
+    transform: scale(1);
+}
+}
+@keyframes load {
+100% {
+    opacity: 0;
+    transform: scale(1);
 }
 }
 
-@keyframes rota {
-100% {
-    transform: rotate(360deg);
-}
-}
 
 

@@ -7,38 +7,36 @@ class PokemonTypeSelect extends Component {
         super();
 
         this.state = {
-            selectValue: "",
-            types: []
+            selectValue: ""            
         }
 
         this.handleChange = this.handleChange.bind(this);
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            types: nextProps.data.fetchTypes
-        })
-    }
+
     handleChange(e) {
         e.preventDefault();
-        let value = this.refs.selectValue.value;
+        let { value } = this.pokemonType;
         this.setState({
             selectValue: value
         })
         this.props.fetchPokemonsByType(value)        
     }
+
     renderField(item, i) {                
         return (
             <option key={i} value={item.url} >{item.name}</option>
         )
     }
+
     render() {
-        let { types, selectValue } = this.state;
+        let { selectValue } = this.state;
+        let { data: { fetchTypes } } = this.props;
         
         return (
             <div>
-                <select ref="selectValue" onChange={this.handleChange} value={selectValue} className="form-control">
+                <select ref={node => this.pokemonType = node} onChange={this.handleChange} value={selectValue} className="form-control">
                     <option></option>
-                    {types.map(this.renderField)}
+                    {fetchTypes.map(this.renderField)}
                 </select>                
             </div>
         )
