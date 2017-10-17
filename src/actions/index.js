@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
-import axios from "axios";        
-let API = "http://pokeapi.co/api/v2";
+import axios from "axios";
+const API = 'https://cors.now.sh/https://pokeapi.co/api/v2';       
 
 export function getPokemons(pokemons) {       
     return {
