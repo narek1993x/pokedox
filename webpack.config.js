@@ -1,17 +1,38 @@
-/*
-    ./webpack.config.js
-*/
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  entry: './src/app.js',
+  entry: ['babel-polyfill', './src/app.js'],
   output: {
-    path: __dirname + "/dist",
-    filename: 'index.js',
-    publicPath: '/dist/'
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ }      
+      {
+        use: 'babel-loader',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/
+      }
     ]
-  }
-}
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  devServer: {
+    historyApiFallback: true,
+    port: 8080,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: __dirname + '/index.html',
+      filename: 'index.html',
+      inject: 'body'
+    })
+  ]
+};

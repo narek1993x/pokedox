@@ -1,51 +1,49 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchPokemonsByType } from "../actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchPokemonsByType } from '../store/actions';
 
 class PokemonTypeSelect extends Component {
-    constructor() {
-        super();
+  state = {
+    selectValue: ''
+  };
 
-        this.state = {
-            selectValue: ""            
-        }
+  handleChange = () => {
+    this.setState({
+      selectValue: this.pokemonType.value
+    });
+    this.props.fetchPokemonsByType(this.pokemonType.value);
+  };
 
-        this.handleChange = this.handleChange.bind(this);
-    }
+  renderField(item, i) {
+    return (
+      <option key={i} value={item.url}>
+        {item.name}
+      </option>
+    );
+  }
 
-    handleChange(e) {
-        e.preventDefault();
-        let { value } = this.pokemonType;
-        this.setState({
-            selectValue: value
-        })
-        this.props.fetchPokemonsByType(value)        
-    }
+  render() {
+    const { fetchTypes } = this.props;
 
-    renderField(item, i) {                
-        return (
-            <option key={i} value={item.url} >{item.name}</option>
-        )
-    }
-
-    render() {
-        let { selectValue } = this.state;
-        let { data: { fetchTypes } } = this.props;
-        
-        return (
-            <div>
-                <select ref={node => this.pokemonType = node} onChange={this.handleChange} value={selectValue} className="form-control">
-                    <option></option>
-                    {fetchTypes.map(this.renderField)}
-                </select>                
-            </div>
-        )
-    }
+    return (
+      <div>
+        <select
+          ref={(node) => (this.pokemonType = node)}
+          onChange={this.handleChange}
+          value={this.state.selectValue}
+          className="form-control"
+        >
+          <option />
+          {fetchTypes.map(this.renderField)}
+        </select>
+      </div>
+    );
+  }
 }
 
 export default connect(
-    state => ({
-        data: state.pokemons
-    }),
-    { fetchPokemonsByType }
+  (state) => ({
+    fetchTypes: state.pokemons.fetchTypes
+  }),
+  { fetchPokemonsByType }
 )(PokemonTypeSelect);
